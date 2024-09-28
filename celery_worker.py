@@ -17,7 +17,7 @@ class FindDuplicatesTaskResult(BaseModel):
 @celery_app.task()
 def find_duplicates(url: str):
     video_id = Path(urlparse(url).path).stem
-    result = requests.post('http://find_duplicates_ai', {
+    result = requests.post('http://find_duplicates_ai', json={
         "id": video_id,
         "url": url
     }).json()
