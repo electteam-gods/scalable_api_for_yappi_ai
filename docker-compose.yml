@@ -28,6 +28,11 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
     volumes:
       - lance_data:/data
   flower:
