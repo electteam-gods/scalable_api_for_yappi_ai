@@ -24,5 +24,5 @@ def find_duplicates(url: str):
     print('RESULT', result)
     return FindDuplicatesTaskResult(
         is_duplicate=result['answer'],
-        duplicate_for=result['id']['0']
+        duplicate_for=result['id']['0'] if result['answer'] else None
     ).model_dump(mode='json')
