@@ -25,4 +25,4 @@ def find_duplicates(url: str):
     return FindDuplicatesTaskResult(
         is_duplicate=result['answer'],
         duplicate_for=result['id']['0'] if result['answer'] else None
-    ).model_dump(mode='json')
+    ).model_dump(mode='json', exclude_none=True)
