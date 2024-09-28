@@ -1,10 +1,8 @@
-from urllib.parse import urlparse
 from pathlib import Path
-from random import random
 from typing import Optional
-import requests
-import os
+from urllib.parse import urlparse
 
+import requests
 from celery import Celery
 from pydantic import BaseModel
 
@@ -23,6 +21,7 @@ def find_duplicates(url: str):
         "id": video_id,
         "url": url
     }).json()
+    print('RESULT', result)
     return FindDuplicatesTaskResult(
         is_duplicate=result['answer'],
         duplicate_for=result['id']['0']
