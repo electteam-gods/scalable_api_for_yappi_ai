@@ -25,6 +25,7 @@ services:
     depends_on:
       - redis
       - app
+      - find_duplicates_ai
   find_duplicates_ai:
     image: oleg36913/video_embed_api_img:v2
     restart: unless-stopped
