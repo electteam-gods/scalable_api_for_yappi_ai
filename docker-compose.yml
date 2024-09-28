@@ -1,0 +1,45 @@
+version: '3.4'
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+  app:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on:
+      - redis
+  celery_worker:
+    build: .
+    command: celery -A celery_worker worker --pool=solo --loglevel=info
+    deploy:
+      mode: replicated
+      replicas: 3
+    depends_on:
+      - redis
+      - app
+  find_duplicates_ai:
+    image: oleg36913/video_embed_api_img:v2
+    deploy:
+      mode: replicated
+      replicas: 3
+    volumes:
+      - lance_data:/data
+  flower:
+    build: .
+    command: celery -A celery_worker flower --port=5555
+    ports:
+      - "5556:5555"
+    depends_on:
+      - app
+      - redis
+      - celery_worker
+
+volumes:
+  lance_data:
+  redis_data:
