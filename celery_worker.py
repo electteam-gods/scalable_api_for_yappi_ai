@@ -11,7 +11,7 @@ celery_app = Celery(__name__, broker='redis://redis/0', backend='redis://redis/0
 
 class FindDuplicatesTaskResult(BaseModel):
     is_duplicate: bool
-    duplicate_for: Optional[str]
+    duplicate_for: Optional[str] = None
 
 
 @celery_app.task()
