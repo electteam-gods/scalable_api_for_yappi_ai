@@ -6,12 +6,13 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    restart: unless-stopped
   app:
     build: .
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - "8000:8000"
-    restart: always
+    restart: unless-stopped
     depends_on:
       - redis
   celery_worker:
@@ -20,11 +21,13 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+    restart: unless-stopped
     depends_on:
       - redis
       - app
   find_duplicates_ai:
     image: oleg36913/video_embed_api_img:v2
+    restart: unless-stopped
     deploy:
       mode: replicated
       replicas: 3
@@ -39,6 +42,7 @@ services:
   flower:
     build: .
     command: celery -A celery_worker flower --port=5555
+    restart: unless-stopped
     ports:
       - "5556:5555"
     depends_on:
