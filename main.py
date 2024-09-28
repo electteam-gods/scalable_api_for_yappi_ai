@@ -18,11 +18,8 @@ class CheckVideoDuplicateResponse(BaseModel):
     duplicate_for: Optional[str] = None
 
 
-@app.post("/check-video-duplicate", response_model=CheckVideoDuplicateResponse)
+@app.post("/check-video-duplicate", response_model=CheckVideoDuplicateResponse, response_model_exclude_unset=True, response_model_exclude_none=True)
 async def check_video_duplicate(payload: CheckVideoDuplicatePayload):
     task: AsyncResult = celery_worker.find_duplicates.delay(payload.link)
     taskResult = celery_worker.FindDuplicatesTaskResult.model_validate(task.get())
-    return CheckVideoDuplicateResponse(
-        is_duplicate=taskResult.is_duplicate,
-        duplicate_for=taskResult.duplicate_for
-    )
+    return taskResult
