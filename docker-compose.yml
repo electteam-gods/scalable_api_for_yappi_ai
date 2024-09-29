@@ -27,7 +27,7 @@ services:
       - app
       - find_duplicates_ai
   find_duplicates_ai:
-    image: oleg36913/video_embed_api_img:v4
+    image: oleg36913/video_embed_api_img:v5
     restart: unless-stopped
     deploy:
       mode: replicated
