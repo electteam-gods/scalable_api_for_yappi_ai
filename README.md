@@ -71,6 +71,10 @@ P.S. В репозитории [https://github.com/electteam-gods/scalable_api_f
 
 <img width="1200" height="500" alt="image" src="https://github.com/NikitaGordievskiy/scalable_api_for_yappi_ai/blob/main/scheme%201.png"> 
 
+Также с помощью веб-сервиса для мониторинга Flower можно отслеживать статус Celery воркеров и задач
+
+<img width="1200" height="500" alt="image" src="https://github.com/NikitaGordievskiy/scalable_api_for_yappi_ai/blob/main/image_2024-09-29_09-20-16.png"> 
+
 ## <a name="4">Преимущества нашего решения </a>
 
 1 Учёт различных способов дупликации - наше решение способно отлавливать более 15 различных вариаций модификации контента.
@@ -81,7 +85,7 @@ P.S. В репозитории [https://github.com/electteam-gods/scalable_api_f
 
 4 Высокий процент попаданий при работе со сложными кейсами - использованные алгоритмы позволяют обрабатывать большую сложных сценариев.
 
-5 Высокая точность установления дубликатов - F1_SCORE >= 0.78
+5 Высокая точность установления дубликатов - F1_SCORE >= 0.79
 
 ## <a name="5">Планы развития </a>
 
